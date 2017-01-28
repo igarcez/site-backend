@@ -13,17 +13,11 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func TypeIndex(w http.ResponseWriter, r *http.Request) {
-	types := app.PageTypes{
-		app.PageType{
-			Code:        "static",
-			Description: "static pages",
-		},
-		app.PageType{
-			Code:        "post",
-			Description: "Blog style posts",
-		},
-	}
-	if err := json.NewEncoder(w).Encode(types); err != nil {
+	theType := app.NewPageType()
+
+	collection := theType.GetCollection()
+
+	if err := json.NewEncoder(w).Encode(collection); err != nil {
 		panic(err)
 	}
 }

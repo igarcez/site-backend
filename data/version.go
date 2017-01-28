@@ -2,9 +2,7 @@ package data
 
 import "time"
 
-// see http://tech.townsourced.com/post/anatomy-of-a-go-web-app/#the-data-package
 type Version struct {
-	VersionTag string
-	created_at time.Time
-	updated_at time.Time
+	CreatedAt time.Time `json:"created_at" sql:"created_at"`
+	UpdatedAt time.Time `json:"updated_at" sql:"updated_at"`
 }
