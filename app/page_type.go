@@ -1,9 +1,6 @@
 package app
 
-import (
-	"github.com/igarcez/site-backend/data"
-	"github.com/jinzhu/gorm"
-)
+import "github.com/jinzhu/gorm"
 
 type PageType struct {
 	Code        string `json:"code"`
@@ -12,15 +9,3 @@ type PageType struct {
 }
 
 type PageTypes []PageType
-
-func NewPageType() PageType {
-	return PageType{}
-}
-
-func (pt *PageType) GetCollection() PageTypes {
-	db := data.GetConnection()
-
-	result := PageTypes{}
-	db.Find(&result)
-	return result
-}

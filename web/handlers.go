@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/igarcez/site-backend/app"
+	"github.com/igarcez/site-backend/data"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -13,10 +14,36 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func TypeIndex(w http.ResponseWriter, r *http.Request) {
-	theType := app.NewPageType()
+	collection := app.PageTypes{}
+	db := data.GetConnection()
+	db.Find(&collection)
+	if err := json.NewEncoder(w).Encode(collection); err != nil {
+		panic(err)
+	}
+}
 
-	collection := theType.GetCollection()
+func CategoryIndex(w http.ResponseWriter, r *http.Request) {
+	collection := app.Categories{}
+	db := data.GetConnection()
+	db.Find(&collection)
+	if err := json.NewEncoder(w).Encode(collection); err != nil {
+		panic(err)
+	}
+}
 
+func PageIndex(w http.ResponseWriter, r *http.Request) {
+	collection := app.Pages{}
+	db := data.GetConnection()
+	db.Find(&collection)
+	if err := json.NewEncoder(w).Encode(collection); err != nil {
+		panic(err)
+	}
+}
+
+func TagIndex(w http.ResponseWriter, r *http.Request) {
+	collection := app.Tags{}
+	db := data.GetConnection()
+	db.Find(&collection)
 	if err := json.NewEncoder(w).Encode(collection); err != nil {
 		panic(err)
 	}

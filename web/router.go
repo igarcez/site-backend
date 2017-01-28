@@ -35,4 +35,19 @@ var getRoutes = Routes{
 		"/types",
 		TypeIndex,
 	},
+	Route{
+		"Category Index",
+		"/categories",
+		CategoryIndex,
+	},
+	Route{
+		"Page Index",
+		"/pages",
+		PageIndex,
+	},
+	Route{
+		"Tag Index",
+		"/tags",
+		TagIndex,
+	},
 }

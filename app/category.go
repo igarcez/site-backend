@@ -9,3 +9,5 @@ type Category struct {
 	PageType   PageType
 	PageTypeID int
 }
+
+type Categories []Category

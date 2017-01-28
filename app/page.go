@@ -12,3 +12,5 @@ type Page struct {
 	Slug       string
 	Content    string `gorm:"type:text"`
 }
+
+type Pages []Page

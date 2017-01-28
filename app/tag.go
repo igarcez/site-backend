@@ -6,3 +6,5 @@ type Tag struct {
 	gorm.Model
 	Tag string
 }
+
+type Tags []Tag
