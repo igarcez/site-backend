@@ -6,11 +6,9 @@ import (
 )
 
 type PageType struct {
-	Id          int    `json:"id"`
 	Code        string `json:"code"`
 	Description string `json:"description"`
 	gorm.Model
-	data.Version
 }
 
 type PageTypes []PageType

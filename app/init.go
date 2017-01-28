@@ -9,4 +9,7 @@ func Init() {
 func InitSchemas() {
 	db := data.GetConnection()
 	db.AutoMigrate(&PageType{})
+	db.AutoMigrate(&Category{})
+	db.AutoMigrate(&Page{})
+	db.AutoMigrate(&Tag{})
 }
