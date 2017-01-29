@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/go-zoo/bone"
+	"github.com/igarcez/site-backend/web/handlers"
 )
 
 type Route struct {
@@ -26,28 +27,23 @@ func NewRouter() *bone.Mux {
 
 var getRoutes = Routes{
 	Route{
-		"Index",
-		"/",
-		Index,
-	},
-	Route{
 		"Type Index",
 		"/types",
-		TypeIndex,
+		handlers.TypeIndex,
 	},
 	Route{
 		"Category Index",
 		"/categories",
-		CategoryIndex,
+		handlers.CategoryIndex,
 	},
 	Route{
 		"Page Index",
 		"/pages",
-		PageIndex,
+		handlers.PageIndex,
 	},
 	Route{
 		"Tag Index",
 		"/tags",
-		TagIndex,
+		handlers.TagIndex,
 	},
 }
