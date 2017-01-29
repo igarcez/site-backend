@@ -42,5 +42,7 @@ func InitServer() Server {
 	server.add("GET", "/categories", handlers.CategoryIndex)
 	server.add("GET", "/pages", handlers.PageIndex)
 	server.add("GET", "/tags", handlers.TagIndex)
+
+	server.add("POST", "/types", handlers.TypeCreate)
 	return server
 }

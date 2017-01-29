@@ -9,3 +9,11 @@ type PageType struct {
 }
 
 type PageTypes []PageType
+
+func (pageType *PageType) IsValid() bool {
+	if len(pageType.Code) > 0 && len(pageType.Description) > 0 {
+		return true
+	} else {
+		return false
+	}
+}
