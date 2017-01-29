@@ -8,6 +8,7 @@ import (
 )
 
 type Route struct {
+	Method      string
 	Pattern     string
 	HandlerFunc http.HandlerFunc
 }
@@ -15,59 +16,31 @@ type Route struct {
 type Routes []Route
 
 type Server struct {
-	Get    Routes
-	Put    Routes
-	Delete Routes
-	Post   Routes
+	Routes Routes
 }
 
 func NewRouter() *bone.Mux {
 	router := bone.New()
 	server := InitServer()
 
-	for _, route := range server.Get {
-		router.GetFunc(route.Pattern, route.HandlerFunc)
-	}
-
-	for _, route := range server.Post {
-		router.PostFunc(route.Pattern, route.HandlerFunc)
-	}
-
-	for _, route := range server.Put {
-		router.PutFunc(route.Pattern, route.HandlerFunc)
-	}
-
-	for _, route := range server.Delete {
-		router.DeleteFunc(route.Pattern, route.HandlerFunc)
+	for _, route := range server.Routes {
+		router.Register(route.Method, route.Pattern, route.HandlerFunc)
 	}
 
 	return router
 }
 
-func (server *Server) add(verb string, pattern string, handler http.HandlerFunc) *Server {
-	var routeObj = Route{pattern, handler}
-	var routerList *Routes
-
-	switch verb {
-	case "Post":
-		routerList = &server.Post
-	case "Put":
-		routerList = &server.Put
-	case "Delete":
-		routerList = &server.Delete
-	default: // GET is the default
-		routerList = &server.Get
-	}
-	*routerList = append(*routerList, routeObj)
+func (server *Server) add(method string, pattern string, handler http.HandlerFunc) *Server {
+	var routeObj = Route{method, pattern, handler}
+	server.Routes = append(server.Routes, routeObj)
 	return server
 }
 
 func InitServer() Server {
 	var server Server
-	// we add the Get verb just for clarity, it is the default
-	server.add("Get", "/types", handlers.TypeIndex)
-	server.add("Get", "/categories", handlers.CategoryIndex)
-	server.add("Get", "/pages", handlers.PageIndex)
-	server.add("Get", "/tags", handlers.TagIndex)
+	server.add("GET", "/types", handlers.TypeIndex)
+	server.add("GET", "/categories", handlers.CategoryIndex)
+	server.add("GET", "/pages", handlers.PageIndex)
+	server.add("GET", "/tags", handlers.TagIndex)
 	return server
 }
