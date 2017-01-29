@@ -3,8 +3,8 @@ package app
 import "github.com/jinzhu/gorm"
 
 type PageType struct {
-	Code        string `json:"code"`
-	Description string `json:"description"`
+	Code        string `gorm:"not null;unique"`
+	Description string `gorm:"not null"`
 	gorm.Model
 }
 
