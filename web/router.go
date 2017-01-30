@@ -43,6 +43,12 @@ func InitServer() Server {
 	server.add("GET", "/pages", handlers.PageIndex)
 	server.add("GET", "/tags", handlers.TagIndex)
 
+	server.add("GET", "/type/:id", handlers.TypeGet)
+
+	server.add("PUT", "/type/:id", handlers.TypeUpdate)
+
 	server.add("POST", "/types", handlers.TypeCreate)
+
+	server.add("DELETE", "/types/:id", handlers.TypeDelete)
 	return server
 }
