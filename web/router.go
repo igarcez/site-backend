@@ -45,14 +45,18 @@ func InitServer() Server {
 
 	server.add("GET", "/type/:id", handlers.TypeGet)
 	server.add("GET", "/category/:id", handlers.CategoryGet)
+	server.add("GET", "/tag/:id", handlers.TagGet)
 
 	server.add("PUT", "/type/:id", handlers.TypeUpdate)
 	server.add("PUT", "/category/:id", handlers.CategoryUpdate)
+	server.add("PUT", "/tag/:id", handlers.TagUpdate)
 
 	server.add("POST", "/types", handlers.TypeCreate)
 	server.add("POST", "/categories", handlers.CategoryCreate)
+	server.add("POST", "/tags", handlers.TagCreate)
 
 	server.add("DELETE", "/type/:id", handlers.TypeDelete)
 	server.add("DELETE", "/category/:id", handlers.CategoryDelete)
+	server.add("DELETE", "/tag/:id", handlers.TagDelete)
 	return server
 }

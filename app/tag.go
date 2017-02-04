@@ -8,3 +8,7 @@ type Tag struct {
 }
 
 type Tags []Tag
+
+func (t *Tag) IsValid() bool {
+	return len(t.Tag) > 0
+}
